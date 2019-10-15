@@ -37,6 +37,12 @@ const App = () => {
     setSnippet(SNIPPETS[snippetIndex]);
     setGameState({...gameState, startTime: new Date().getTime() });
   };
+
+  const startGame = () => {
+    setSnippet('')
+    setUserText('')
+    setGameState(initialGameState)
+  }
   
     return (
       <div>
@@ -48,7 +54,7 @@ const App = () => {
         <input value={userText} onChange={updateUserText} />
         <br/>
         <br/>
-        <button>Start a new race!</button>
+        <button onClick={startGame()}>Start a new race!</button>
         <br/>
         <hr />
         {
