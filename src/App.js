@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import './App.css';
 
 const App = () => {
   const SNIPPETS = [
-    "Bears, beets, battlestar galactica",
+    "Bears, beets, battlestar galactica.",
     "What's Forrest Gump's password? 1Forrest1",
-    "Where do programmers like to hangout? The Foo Bar"
+    "Where do programmers like to hangout? The Foo Bar!"
   ];
 
   const initialGameState = {victory: false, startTime: null, endTime: null}
@@ -32,7 +33,7 @@ const App = () => {
     }
   }
 
-  const chooseSnippet = snippetIndex => () => {
+  const chooseSnippet = (snippetIndex) => {
     console.log('setSnippet', snippetIndex);
     setSnippet(SNIPPETS[snippetIndex]);
     setGameState({...gameState, startTime: new Date().getTime() });
@@ -44,23 +45,23 @@ const App = () => {
     setGameState(initialGameState)
   }
   
+  
     return (
-      <div>
+      <div className="game-body">
         <h2>Type Race</h2>
         <hr />
         <h3>Snippet</h3>
-        {snippet}
+        <div className="snippet-text">{snippet}</div>
         <h4>{gameState.victory ? `Done! 🎉 Time: ${gameState.endTime}ms` : null}</h4>
-        <input value={userText} onChange={updateUserText} />
+        <input className="game-input" placeholder="Type here" value={userText} onChange={updateUserText} />
         <br/>
-        <br/>
-        <button onClick={startGame()}>Start a new race!</button>
+        <button className="game-start" onClick={()=>startGame()}>Start a new race!</button>
         <br/>
         <hr />
         {
           SNIPPETS.map((SNIPPET, index) => (
-            <button onClick={chooseSnippet(index)} key={index}>
-              {SNIPPET.substring(0, 10)}...
+            <button className="game-snippet"  onClick={()=>chooseSnippet(index)} key={index}>
+              {SNIPPET.substring(0, 20)}...
             </button>
           ))
         }
